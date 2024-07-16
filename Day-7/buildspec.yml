@@ -14,7 +14,7 @@
       - sudo yum update -y
       - sudo yum -y install unzip
       - curl -o  https://releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip # use yum-config-manager to add the official HashiCorp Linux repository
-      - unzip terraform_0.15.4_linux_amd64.zip
+      - unzip terraform_0.15.4_linux_amd64.zip -d /usr/local/bin/
       - sudo mv terraform /usr/local/bin/
       - terraform init
       - terraform apply --auto-approve
