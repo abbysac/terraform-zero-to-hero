@@ -1,27 +1,20 @@
-version: 0.2
+#version: 0.2
 
-phases:
-  install:
-    runtime-versions:
-      python: 3.x
+#phases:
+#  install:
+#    runtime-versions:
+#      python: 3.x
 
-  pre_build:
-    commands:
-      # fail on any error
-      set -eu
-
-      # install yum-config-manager to manage your repositories
-      sudo yum install -y yum-utils
-
-      # use yum-config-manager to add the official HashiCorp Linux repository
-      sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-
-      # install terraform
-      sudo yum -y install terraform
-
-      # verify terraform is installed
-      terraform --version
+  #pre_build:
+  #  commands:
+     
 
   build:
     commands:
-      - *
+      - sudo yum update -y
+      - sudo yum -y install unzip
+      - curl -O https://rpm.releases.hashicorp.com/terraform/0.15.4/terraform_0.15.4_linux_amd64.zip  # use yum-config-manager to add the official HashiCorp Linux repository
+      - unzip terraform_0.15.4_linux_amd64.zip
+      - sudo mv terraform /usr/local/bin/
+      - terraform init
+      - terraform apply --auto-approve
